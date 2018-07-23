@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+    <!--1. 创建一个ShiroFilter对象-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--5. 设置securityManager-->
+        <property name="securityManager" ref="securityManager"/>
+        <!--6. 设置登陆页的页面-->
+        <property name="loginUrl" value="login.html"/>
+        <!--7. 未跳转的登陆页面-->
+        <property name="unauthorizedUrl" value="403.html"/>
+
+        <!--8. 设置过滤器链-->
+        <!--/* = authc 表示需要认证-->
+        <property name="filterChainDefinitions">
+            <value>
+                /login.html=anon
+                /subLogin=anon
+                /*=authc
+            </value>
+        </property>
+
+    </bean>
+
+    <!--2. 创建securityManager-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!--4. 将自定义realm传入到securitymanager中，认证与授权-->
+        <property name="realm" ref="realm"/>
+    </bean>
+
+    <!--3.设置自定义realm-->
+    <bean class="com.imooc.shiro.realm.CustomRealm" id="realm">
+        <!--10 设置credentialsMatcher内容-->
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
+
+    <!--9. 加密管理器对象-->
+    <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher" id="credentialsMatcher">
+        <!--9.1 设置加密类型-->
+        <property name="hashAlgorithmName" value="md5"/>
+        <!--9.2 设置加密次数-->
+        <property name="hashIterations" value="1"/>
+
+    </bean>
+
+    <!--导入spring-dao.xml文件-->
+    <import resource="spring-dao.xml"/>
+    <!--扫描路径-->
+    <context:component-scan base-package="com.imooc"/>
+
+</beans>
