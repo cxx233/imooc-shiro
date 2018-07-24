@@ -11,6 +11,8 @@
     <modules>
         <module>shirotest</module>
         <module>shiroweb</module>
+        <module>shiro-web</module>
+        <module>spring-shiro-web</module>
     </modules>
 
 

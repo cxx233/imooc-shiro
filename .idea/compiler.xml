@@ -7,11 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="shirotest" />
+        <module name="spring-shiro-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="imoocshiro" target="1.5" />
+      <module name="shiro-web" target="1.5" />
       <module name="shirotest" target="1.5" />
+      <module name="spring-shiro-web" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/imoocshiro.iml" filepath="$PROJECT_DIR$/imoocshiro.iml" />
       <module fileurl="file://$PROJECT_DIR$/shirotest/shirotest.iml" filepath="$PROJECT_DIR$/shirotest/shirotest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-shiro-web/spring-shiro-web.iml" filepath="$PROJECT_DIR$/spring-shiro-web/spring-shiro-web.iml" />
     </modules>
   </component>
 </project>
