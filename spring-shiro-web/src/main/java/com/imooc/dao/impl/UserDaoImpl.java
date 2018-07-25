@@ -21,13 +21,13 @@ public class UserDaoImpl implements UserDao {
     private JdbcTemplate jdbcTemplate;
 
     public User getUserByUserName(String userName) {
-        String sql = "select username,password from userrs where username = ?";
+        String sql = "select username,password from users where username = ?";
 
         List<User> list = jdbcTemplate.query(sql, new String[]{userName}, new RowMapper<User>() {
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
                 User user = new User();
                 user.setUsername(resultSet.getString("username"));
-                user.setPasssword(resultSet.getString("password"));
+                user.setPassword(resultSet.getString("password"));
                 return user;
             }
         });
@@ -43,6 +43,15 @@ public class UserDaoImpl implements UserDao {
         return jdbcTemplate.query(sql, new String[]{userName}, new RowMapper<String>() {
             public String mapRow(ResultSet resultSet, int i) throws SQLException {
                 return resultSet.getString("role_name");
+            }
+        });
+    }
+
+    public List<String> queryPermissionsByUserName(String userName) {
+        String sql = "select rp.permission from user_roles ur,roles_permissions rp where ur.role_name = rp.role_name and ur.username = ?";
+        return jdbcTemplate.query(sql, new String[]{userName}, new RowMapper<String>() {
+            public String mapRow(ResultSet resultSet, int i) throws SQLException {
+                return resultSet.getString("permission");
             }
         });
     }

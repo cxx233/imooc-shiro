@@ -2,7 +2,7 @@ package com.imooc.vo;
 
 public class User {
     private  String username;
-    private String passsword;
+    private String password;
 
     public String getUsername() {
         return username;
@@ -12,11 +12,11 @@ public class User {
         this.username = username;
     }
 
-    public String getPasssword() {
-        return passsword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasssword(String passsword) {
-        this.passsword = passsword;
+    public void setPassword(String passsword) {
+        this.password = passsword;
     }
 }

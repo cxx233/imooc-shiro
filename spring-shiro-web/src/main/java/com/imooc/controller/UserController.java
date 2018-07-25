@@ -21,7 +21,7 @@ public class UserController {
         Subject subject = SecurityUtils.getSubject();
 
         // 2. 主体提交请求
-        UsernamePasswordToken toke = new UsernamePasswordToken(user.getUsername(),user.getPasssword());
+        UsernamePasswordToken toke = new UsernamePasswordToken(user.getUsername(),user.getPassword());
         try {
             subject.login(toke);
         } catch (AuthenticationException e) {
@@ -36,7 +36,7 @@ public class UserController {
 
     }
 
-    @RequiresRoles("admin") // 表示这个主体必须是admin角色才能连接
+//    @RequiresRoles("admin") // 表示这个主体必须是admin角色才能连接
     @RequestMapping(value = "/testRole",method = RequestMethod.GET)
     @ResponseBody
     public String testRole() {
@@ -44,7 +44,7 @@ public class UserController {
     }
 
 
-    @RequiresRoles("admin1") // 表示这个主体必须是admin角色才能连接访问
+//    @RequiresRoles("admin1") // 表示这个主体必须是admin角色才能连接访问
     @RequestMapping(value = "/testRole1",method = RequestMethod.GET)
     @ResponseBody
     public String testRole1() {
@@ -56,5 +56,16 @@ public class UserController {
     @ResponseBody
     public String testPersmission() {
         return  "testPersmission success";
+    }
+
+    @RequestMapping(value = "/testPerms",method = RequestMethod.GET)
+    @ResponseBody
+    public String testPerms() {
+        return  "testPerms success";
+    }
+    @RequestMapping(value = "/testPerms1",method = RequestMethod.GET)
+    @ResponseBody
+    public String testPerms1() {
+        return  "testPerms1 success";
     }
 }

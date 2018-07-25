@@ -69,9 +69,10 @@ public class CustomRealm extends AuthorizingRealm  {
      * @return
      */
     private Set<String> getPermissionsByUserName(String userName) {
-        Set<String> sets = new HashSet<String>();
-        sets.add("user:delete");
-        sets.add("user:add");
+        List<String> list = userDao.queryPermissionsByUserName(userName);
+        Set<String> sets = new HashSet<String>(list);
+/*        sets.add("user:delete");
+        sets.add("user:add");*/
         return sets;
     }
 
@@ -134,13 +135,13 @@ public class CustomRealm extends AuthorizingRealm  {
     private String getPasswordByUserName(String userName) {
         User user = userDao.getUserByUserName(userName);
         if (user != null) {
-            return user.getPasssword();
+            return user.getPassword();
         }
         return null;
     }
 
     public static void main(String[] args) {
-        Md5Hash md5Hash = new Md5Hash("123","zhang");
+        Md5Hash md5Hash = new Md5Hash("123456","zhang");
         System.out.println(md5Hash.toString());
     }
 }
